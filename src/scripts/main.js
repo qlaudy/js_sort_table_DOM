@@ -8,7 +8,7 @@ thead.addEventListener('click', (events) => {
   const th = events.target.closest('th');
 
   if (!th) {
-    return 0;
+    return;
   }
 
   const i = th.cellIndex;
@@ -25,10 +25,13 @@ thead.addEventListener('click', (events) => {
     const textA = indexA.textContent;
     const textB = indexB.textContent;
 
-    const numA = Number(textA.replace(/[^0-9.-]/g, ''));
-    const numB = Number(textB.replace(/[^0-9.-]/g, ''));
+    const cleanA = textA.replace(/[^0-9.-]/g, '');
+    const cleanB = textB.replace(/[^0-9.-]/g, '');
 
-    if (!Number.isNaN(numA) && !Number.isNaN(numB)) {
+    const numA = Number(cleanA);
+    const numB = Number(cleanB);
+
+    if (cleanA !== '' && cleanB !== '') {
       return numA - numB;
     }
 
